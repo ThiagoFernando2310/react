@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+Projeto desenvolvido como parte de uma tarefa. O objetivo é criar uma aplicação em React com Vite, que consuma a API do GitHub, exiba dados de usuários e repositórios, e implemente navegação entre páginas utilizando o React Router DOM.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🧰 Tecnologias utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Tecnologia         | 
+|--------------------|
+| *React*          | 
+| *Vite*           |
+| *TypeScript*     | 
+| *Tailwind CSS*   | 
+| *ESLint*         |
+| *TanStack Query* |
+| *React-Router-DOM* |
+| *Jotai*          |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## :hammer: Funcionalidades do Projeto
+### 🔹 Página 1 - *Dados* (/)
+- Tela inicial que pede o login do usuário.
+- Contém botão para acessar a tela de *inicio*.
+- 
+### 🔹 Página 2 - *Início* (/inicio)
+- Tela de entrada que dá boas-vindas ao usuário.
+- Contém botão para acessar a tela de *Requisições*.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### 🔹 Página 3 - *Requisições* (/requisicoes)
+- Mostra os dados do usuário do GitHub digitado na tela anterior.
+- Dados exibidos:
+  - Foto de perfil
+  - Nome
+  - Login
+  - Bio
+  - Email
+  - Total de repositórios públicos
+  - Link para o perfil completo
+- Mostra os *5 repositórios públicos* do usuário.
+  - Para cada repositório:
+    - Nome (com link clicável)
+    - Descrição
+    - Data de criação
+    - Última atualização
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🔹 Página 4 - *Playground* (/playground/:codigo)
+- Mostra um texto personalizado com base no código digitado na URL.
+- Exemplo:
+  - Acessando /playground/123 → Exibe: "Código na URL: 123"
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 💡 Observações importantes
+
+- A busca do usuário do GitHub é feita pelo *login* (ex: octocat, thiagods01, etc).
+- Caso o nome informado não exista, uma mensagem de erro será exibida.
+- A chamada à API do GitHub é feita usando o useQuery do *TanStack Query* dentro de um hook customizado.
+- O nome de usuário é mantido em um estado global com *Jotai* para ser acessado entre as páginas.
