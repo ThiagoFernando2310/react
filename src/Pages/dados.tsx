@@ -21,6 +21,7 @@ export function Dados() {
                     value={userName}
                     onChange={handleChange}
                     placeholder="Seu nome"
+                    maxLength={32}
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <div className="flex justify-center items-center mt-4">

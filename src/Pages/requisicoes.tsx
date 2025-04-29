@@ -1,20 +1,22 @@
 import { useAtom } from "jotai";
 import { userNameAtom } from "../atoms/user";
 import { useGitUsuarios } from "../hooks/useGitUsuario";
-import { GitHubRepo } from "../hooks/useGit";
+import { GitHubRepo } from "../models/usuariosGit";
 import { useNavigate } from "react-router-dom";
+import { Status } from "../components/Status";
 
 export function Requisicao() {
     const [username] = useAtom(userNameAtom);
     const { data, isLoading, isError } = useGitUsuarios(username);
     const navigate = useNavigate();
 
-    if (!username) {
-        return <p>Nenhum nome de usuário fornecido.</p>;
+    if (isLoading){
+       return <Status type="loading" message="Carregando..."/>
     }
-
-    if (isLoading) return <p>Carregando...</p>;
-    if (isError || !data) return <p>Erro ao buscar dados do GitHub.</p>;
+        
+    if (isError || !data){
+        return <Status type="error" message="Erro ao buscar o usuário, tente outro nome ou verifique se este está correto."/>;
+    } 
 
     const { user, repos } = data;
 
