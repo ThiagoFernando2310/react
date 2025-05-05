@@ -1,7 +1,8 @@
 import { useAtom } from "jotai"
-import { userNameAtom } from "../atoms/user"
+import { userNameAtom } from "../../atoms/user.atom"
 import React from "react"
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 export function Dados() {
     const [userName, setUserName] = useAtom(userNameAtom);
@@ -11,6 +12,14 @@ export function Dados() {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserName(e.target.value);
     };
+
+    const handleNext = () => {
+        if (userName.trim() === '') {
+            toast.error("O nome do usuário não foi inserido")
+        } else {
+            navigate("/inicio")
+        };
+    }
 
     return (
         <div className="flex justify-center items-center min-h-screen ">
@@ -25,10 +34,11 @@ export function Dados() {
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <div className="flex justify-center items-center mt-4">
-                    <button className="bg-cyan-600 rounded-full text-center p-2 " onClick={() => navigate("/inicio")}>Próximo</button>
+                    <button className="bg-cyan-600 rounded-full text-center p-2 " onClick={handleNext}>Próximo</button>
                 </div>
 
             </div>
+            <ToastContainer />
         </div>
     );
 }

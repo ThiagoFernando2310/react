@@ -1,10 +1,9 @@
 import { useAtom } from "jotai"
-import { userNameAtom } from "../atoms/user"
-import React from "react"
+import { userNameAtom } from "../../atoms/user.atom"
 import { useNavigate } from "react-router-dom"
 
 
-export function Inicio() {
+export function BoasVindas() {
     const [userName] = useAtom(userNameAtom)
 
     const navigate = useNavigate()

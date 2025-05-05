@@ -1,0 +1,1 @@
+export {Dados} from './Dados'

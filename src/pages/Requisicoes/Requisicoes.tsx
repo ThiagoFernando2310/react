@@ -1,9 +1,9 @@
 import { useAtom } from "jotai";
-import { userNameAtom } from "../atoms/user";
-import { useGitUsuarios } from "../hooks/useGitUsuario";
-import { GitHubRepo } from "../models/usuariosGit";
+import { userNameAtom } from "../../atoms/user.atom";
+import { useGitUsuarios } from "../../hooks/useGitUsuario";
+import { GitHubRepo } from "../../models/usuariosGit";
 import { useNavigate } from "react-router-dom";
-import { Status } from "../components/Status";
+import { Status } from "../../components/Status";
 
 export function Requisicao() {
     const [username] = useAtom(userNameAtom);
